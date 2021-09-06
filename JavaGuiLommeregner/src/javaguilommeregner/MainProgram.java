@@ -18,5 +18,4 @@ public class MainProgram {
         //Eneables you to actually see the frame
         window.setVisible(true);
     }
-    
 }

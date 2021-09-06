@@ -173,43 +173,57 @@ public class mainWindow extends JFrame implements ActionListener{
     //Action Performed metode, Metode som køres når en kanp bruges
     @Override
     public void actionPerformed(ActionEvent e) {
-        String sequence = numberTextField.getText();
-        if(e.getSource() == btnClear) {numberTextField.setText("");}
+        String sequence = numberTextField.getText(); //Creates a String with the same content as numberTextField
+        String pressedButton = e.getActionCommand(); //Creates a String which contains the button that was pressed
         
-        else if(e.getSource() == btnBackspace) {
+        if(pressedButton.charAt(0) == 'C') {numberTextField.setText("");} //Checks if the pressed button had a specific charecther at index = 0, if true it performs and action
+        
+        else if (pressedButton.charAt(0) == '=') {numberTextField.setText(Calculate(sequence));} //If true it calls the calculate method and sends the sequence in as a parameter
+        
+        else if (pressedButton.charAt(0) == '<') { //If true tries a try catch statement that checks if removing a characther puts the length in negatives.
             try {
-                numberTextField.setText(sequence = sequence.substring(0, sequence.length() - 1));
-            } catch(StringIndexOutOfBoundsException Ex) {
-                System.out.println(Ex);
-            }   
-        }
+        numberTextField.setText(sequence = sequence.substring(0, sequence.length() - 1)); //Takes the sequence and creates a substring at the first char and 1 below the max.
+        } catch(StringIndexOutOfBoundsException Ex) {
+        System.out.println(Ex);   
+        }}
         
-        else if(e.getSource() == btnDot) {
-            if(!sequence.contains(".")) {
-                numberTextField.setText(numberTextField.getText() + ".");
-            } else{
-                System.out.println("Already contains a .");
+        else {numberTextField.setText(numberTextField.getText() + pressedButton);} //If none of the buttons are special operatores it sets the text of the field to the current text + the pressed button
+        
+    }
+    
+    public static String Calculate(String sequence) { //Method used for calculations
+      char[] charArray = sequence.toCharArray(); //Creates an arrays of chars. The chars are added from the sequnce using the toCharArray() method
+      
+      //Varibles used throughout the calculations
+      String firstOperand = "";
+      String secondOperand = "";
+      String operator = "";
+      double result = 0;
+
+      for (int i = 0; i < charArray.length; i++) {
+         if (charArray[i] >= '0' && charArray[i] <= '9' || charArray[i] == '.') {
+            if(operator.isEmpty()){
+               firstOperand += charArray[i];
+            }else{
+               secondOperand += charArray[i];
             }
-        }
-        
-        else if(e.getSource() == btnEquals) {}
-        
-        else if(e.getSource() == btnPlus) {}
-        else if(e.getSource() == btnMinus) {}
-        else if(e.getSource() == btnMultiply) {}
-        else if(e.getSource() == btnDivide) {}
-        
-        else if(e.getSource() == btn0) {numberTextField.setText(numberTextField.getText() + "0");}
-        else if(e.getSource() == btn1) {numberTextField.setText(numberTextField.getText() + "1");}
-        else if(e.getSource() == btn2) {numberTextField.setText(numberTextField.getText() + "2");}
-        else if(e.getSource() == btn3) {numberTextField.setText(numberTextField.getText() + "3");}
-        else if(e.getSource() == btn4) {numberTextField.setText(numberTextField.getText() + "4");}
-        else if(e.getSource() == btn5) {numberTextField.setText(numberTextField.getText() + "5");}
-        else if(e.getSource() == btn6) {numberTextField.setText(numberTextField.getText() + "6");}
-        else if(e.getSource() == btn7) {numberTextField.setText(numberTextField.getText() + "7");}
-        else if(e.getSource() == btn8) {numberTextField.setText(numberTextField.getText() + "8");}
-        else if(e.getSource() == btn9) {numberTextField.setText(numberTextField.getText() + "9");}
-        }
+         }  
+
+         if(charArray[i] == '+' || charArray[i] == '-' || charArray[i] == '/' || charArray[i] == '*') {
+            operator += charArray[i];
+         }
+      }
+
+      if (operator.equals("+"))
+         result = (Double.parseDouble(firstOperand) + Double.parseDouble(secondOperand));
+      else if (operator.equals("-"))
+         result = (Double.parseDouble(firstOperand) - Double.parseDouble(secondOperand));
+      else if (operator.equals("/"))
+         result = (Double.parseDouble(firstOperand) / Double.parseDouble(secondOperand));
+      else
+         result = (Double.parseDouble(firstOperand) * Double.parseDouble(secondOperand));
+      
+      String s = Double.toString(result);
+      return s;
+   }    
 }
-
-
