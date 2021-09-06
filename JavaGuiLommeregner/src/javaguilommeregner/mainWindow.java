@@ -200,21 +200,21 @@ public class mainWindow extends JFrame implements ActionListener{
       String operator = "";
       double result = 0;
 
-      for (int i = 0; i < charArray.length; i++) {
-         if (charArray[i] >= '0' && charArray[i] <= '9' || charArray[i] == '.') {
-            if(operator.isEmpty()){
+      for (int i = 0; i < charArray.length; i++) { //For loop that runs as long as i is less than the length of the array
+         if (charArray[i] >= '0' && charArray[i] <= '9' || charArray[i] == '.') { //Checks if the char is above 0 and below 9 or is a .
+            if(operator.isEmpty()){ //If the operator is empty the first operand stors the char
                firstOperand += charArray[i];
-            }else{
+            }else{ //Else statement that goes through in the second succesfull loop storing the value of the second operand
                secondOperand += charArray[i];
             }
          }  
 
-         if(charArray[i] == '+' || charArray[i] == '-' || charArray[i] == '/' || charArray[i] == '*') {
+         if(charArray[i] == '+' || charArray[i] == '-' || charArray[i] == '/' || charArray[i] == '*') { //If statement to find the specified operator
             operator += charArray[i];
          }
       }
 
-      if (operator.equals("+"))
+      if (operator.equals("+")) //if statement that check what operator is being stored and does a calculation based of it
          result = (Double.parseDouble(firstOperand) + Double.parseDouble(secondOperand));
       else if (operator.equals("-"))
          result = (Double.parseDouble(firstOperand) - Double.parseDouble(secondOperand));
@@ -223,6 +223,7 @@ public class mainWindow extends JFrame implements ActionListener{
       else
          result = (Double.parseDouble(firstOperand) * Double.parseDouble(secondOperand));
       
+      // Creates a String that stores the value of result as a String then returns the value as a String
       String s = Double.toString(result);
       return s;
    }    
