@@ -79,6 +79,29 @@ public class mainWindow extends JFrame implements ActionListener{
         btnMultiply = new JButton("*");
         btnDivide = new JButton("/");
         
+        //ActionListeners bruges til at checke om der bliver klikket på knapperne
+        btnEquals.addActionListener(this);
+        btnClear.addActionListener(this);
+        btnBackspace.addActionListener(this);
+        btnDot.addActionListener(this);
+        
+        btnPlus.addActionListener(this);
+        btnMinus.addActionListener(this);
+        btnMultiply.addActionListener(this);
+        btnDivide.addActionListener(this);
+        
+        btn0.addActionListener(this);
+        btn1.addActionListener(this);
+        btn2.addActionListener(this);
+        btn3.addActionListener(this);
+        btn4.addActionListener(this);
+        btn5.addActionListener(this);
+        btn6.addActionListener(this);
+        btn7.addActionListener(this);
+        btn8.addActionListener(this);
+        btn9.addActionListener(this);
+        
+        
         //SetBounds sets the positon and size of the Element
         numberTextField.setBounds(25, 10, 300, 24);
         
@@ -147,10 +170,31 @@ public class mainWindow extends JFrame implements ActionListener{
         add(mainPanel);
     }
 
+    //Action Performed metode, Metode som køres når en kanp bruges
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String sequence = numberTextField.getText();
+        if(e.getSource() == btnClear) {numberTextField.setText("");}
+        
+        else if(e.getSource() == btnBackspace) {
+            try {
+                numberTextField.setText(sequence = sequence.substring(0, sequence.length() - 1));
+            } catch(StringIndexOutOfBoundsException Ex) {
+                System.out.print(Ex);
+            }   
+        }
+        
+        else if(e.getSource() == btn0) {numberTextField.setText(numberTextField.getText() + "0");}
+        else if(e.getSource() == btn1) {numberTextField.setText(numberTextField.getText() + "1");}
+        else if(e.getSource() == btn2) {numberTextField.setText(numberTextField.getText() + "2");}
+        else if(e.getSource() == btn3) {numberTextField.setText(numberTextField.getText() + "3");}
+        else if(e.getSource() == btn4) {numberTextField.setText(numberTextField.getText() + "4");}
+        else if(e.getSource() == btn5) {numberTextField.setText(numberTextField.getText() + "5");}
+        else if(e.getSource() == btn6) {numberTextField.setText(numberTextField.getText() + "6");}
+        else if(e.getSource() == btn7) {numberTextField.setText(numberTextField.getText() + "7");}
+        else if(e.getSource() == btn8) {numberTextField.setText(numberTextField.getText() + "8");}
+        else if(e.getSource() == btn9) {numberTextField.setText(numberTextField.getText() + "9");}
+        }
 }
 
 
