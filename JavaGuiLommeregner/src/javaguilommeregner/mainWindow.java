@@ -1,3 +1,4 @@
+//Victor Kahl Petersen 3.D Rybners Teknisk Skole
 package javaguilommeregner;
 
 import java.awt.event.ActionEvent;

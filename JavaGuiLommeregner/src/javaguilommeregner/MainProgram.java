@@ -1,3 +1,4 @@
+//Victor Kahl Petersen 3.D Rybners Teknisk Skole
 package javaguilommeregner;
 
 import javax.swing.JFrame;
@@ -10,7 +11,7 @@ public class MainProgram {
         JFrame window = new mainWindow();
         
         window.setSize(380, 470);
-        window.setTitle("One stop calculator");
+        window.setTitle("One stop calculator, VKP");
         
         //Sets the cross in the left corner of the GUI as an exit function
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
