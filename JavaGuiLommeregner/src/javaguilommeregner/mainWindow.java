@@ -180,9 +180,24 @@ public class mainWindow extends JFrame implements ActionListener{
             try {
                 numberTextField.setText(sequence = sequence.substring(0, sequence.length() - 1));
             } catch(StringIndexOutOfBoundsException Ex) {
-                System.out.print(Ex);
+                System.out.println(Ex);
             }   
         }
+        
+        else if(e.getSource() == btnDot) {
+            if(!sequence.contains(".")) {
+                numberTextField.setText(numberTextField.getText() + ".");
+            } else{
+                System.out.println("Already contains a .");
+            }
+        }
+        
+        else if(e.getSource() == btnEquals) {}
+        
+        else if(e.getSource() == btnPlus) {}
+        else if(e.getSource() == btnMinus) {}
+        else if(e.getSource() == btnMultiply) {}
+        else if(e.getSource() == btnDivide) {}
         
         else if(e.getSource() == btn0) {numberTextField.setText(numberTextField.getText() + "0");}
         else if(e.getSource() == btn1) {numberTextField.setText(numberTextField.getText() + "1");}
